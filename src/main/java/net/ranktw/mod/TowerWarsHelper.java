@@ -56,7 +56,7 @@ public class TowerWarsHelper {
         MinecraftForge.EVENT_BUS.register(this);
         FMLCommonHandler.instance().bus().register(this);
         MinecraftForge.EVENT_BUS.register(new TowerWarsEvent());
-//        loadConfig();
+        loadConfig();
         addTeamList();
         new Thread(() -> {
             try {
@@ -81,35 +81,35 @@ public class TowerWarsHelper {
         }
     }
 
-//    public static void saveConfig() {
-//        JsonObject obj = new JsonObject();
-//        obj.addProperty("Enabled", enabled);
-//        try {
-//            File file = new File(configFile, FileName);
-//            if (!file.exists()) {
-//                file.getParentFile().mkdirs();
-//                file.createNewFile();
-//            }
-//            FileWriter writer = new FileWriter(file, false);
-//            writer.write(obj.toString());
-//            writer.close();
-//        } catch (Throwable e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//    private static void loadConfig() {
-//        try {
-//            File file = new File(configFile, FileName);
-//            if (!file.exists()) {
-//                return;
-//            }
-//            JsonObject json = new JsonParser().parse(new FileReader(file)).getAsJsonObject();
-//            enabled = json.get("Enabled").getAsBoolean();
-//        } catch (Throwable e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static void saveConfig() {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("Enabled", enabled);
+        try {
+            File file = new File(configFile, FileName);
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            FileWriter writer = new FileWriter(file, false);
+            writer.write(obj.toString());
+            writer.close();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+
+    }
+    private static void loadConfig() {
+        try {
+            File file = new File(configFile, FileName);
+            if (!file.exists()) {
+                return;
+            }
+            JsonObject json = new JsonParser().parse(new FileReader(file)).getAsJsonObject();
+            enabled = json.get("Enabled").getAsBoolean();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
 /**     "===================================================="    */
 
     @SubscribeEvent
